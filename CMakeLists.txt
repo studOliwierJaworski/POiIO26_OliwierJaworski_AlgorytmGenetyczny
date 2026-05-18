@@ -7,4 +7,6 @@ add_executable(AlgorytmGenetyczny main.cpp
         TParam.h
         TParam.cpp
         TCandidate.h
-        TCandidate.cpp)
+        TCandidate.cpp
+        TPopulation.h
+        TPopulation.cpp)
