@@ -8,6 +8,7 @@
 
 class TPopulation {
 
+    static unsigned int _id;
     unsigned int candidates_count;  // liczba osobników w populacji
     std::vector<TCandidate> candidates; // zbiornik na obiekty klasy TCandidate
     double best_val = 0;    // najlepszy obecny wynik
@@ -18,5 +19,6 @@ public:
     TCandidate get_best_candidate();
 
     void info();    // f. do wyswietlania informacji na ekranie
+    void best_info();
 
 };

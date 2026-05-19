@@ -9,4 +9,7 @@ add_executable(AlgorytmGenetyczny main.cpp
         TCandidate.h
         TCandidate.cpp
         TPopulation.h
-        TPopulation.cpp)
+        TPopulation.cpp
+        TKlasa.h
+        TKlasa.cpp
+        dynamiczneTworzenieObiektow.cpp)

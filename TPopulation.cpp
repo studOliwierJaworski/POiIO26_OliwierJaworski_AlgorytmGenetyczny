@@ -8,8 +8,11 @@
 
 using namespace std;
 
+unsigned int TPopulation::_id = 0;
+
 TPopulation::TPopulation(unsigned int cands_count) {
 
+    _id++;
     candidates_count = cands_count;
 
     // utworzenie obiekyów klasy TCandidate, będących elementami wektora candidates
@@ -44,7 +47,7 @@ TCandidate TPopulation::get_best_candidate() {
 void TPopulation::info() {
 
     cout << "\n\n";
-    cout << "==== POPULATION #" << 0 << " ====\n";
+    cout << "==== POPULATION #" << _id << " ====\n";
 
     for (int i = 0; i < candidates_count; i++) {
         cout << "== candidate#" << i << ": " << candidates[i].get_mark() << "\n";
