@@ -12,4 +12,6 @@ add_executable(AlgorytmGenetyczny main.cpp
         TPopulation.cpp
         TKlasa.h
         TKlasa.cpp
-        dynamiczneTworzenieObiektow.cpp)
+        dynamiczneTworzenieObiektow.cpp
+        TAlgorithm.h
+        TAlgorithm.cpp)

@@ -18,7 +18,9 @@ public:
     void calculate();
     TCandidate get_best_candidate();
 
-    void info();    // f. do wyswietlania informacji na ekranie
-    void best_info();
+    unsigned int get_id() {return _id;}
+    unsigned int get_candidates_count() { return candidates_count; }
+    double get_best_val() {return best_val; }
 
+    void info();    // f. do wyswietlania informacji na ekranie
 };

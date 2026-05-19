@@ -5,7 +5,7 @@
 #include "TKlasa.h"
 #include <iostream>
 using namespace std;
-
+/*
 int main() {
 
     TKlasa* wsk_obiekt1 = new TKlasa{ -3 };
@@ -31,3 +31,4 @@ int main() {
 
     return 0;
 }
+*/

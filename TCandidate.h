@@ -10,7 +10,7 @@ class TCandidate {
 
     TParam genotype[GENS_COUNT] =       // tablica z wszystkimi genami osobnika
     {
-        TParam("x1", 0, 10, 1),
+        TParam("x1", 0, 100, 1),
         TParam("x2", 0, 10, 1)
     };
 

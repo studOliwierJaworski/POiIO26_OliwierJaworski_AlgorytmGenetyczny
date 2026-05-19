@@ -7,42 +7,20 @@
 #include "TCandidate.h"
 #include "TPopulation.h"
 #include "TKlasa.h"
+#include "TAlgorithm.h"
 
 using namespace std;
-/*
+
 int main() {
 
-    TKlasa* wsk_obiekt1 = new TKlasa(-3);
-    TKlasa* wsk_obiekt2 = new TKlasa(0);
-    TKlasa* wsk_obiekt3 = new TKlasa(5);
+  srand(time(0));
 
-    wsk_obiekt1->info();
-    (*wsk_obiekt2).info();
-    wsk_obiekt3->info();
+  unsigned int candidates_count = 5;
+  unsigned int max_population_count = 20;
+  unsigned int min_improvement_proc = 2;
 
-    delete wsk_obiekt1;
-    delete wsk_obiekt2;
-    delete wsk_obiekt3;
+  TAlgorithm task {candidates_count, max_population_count, min_improvement_proc};
+  task.run();
 
-
-    /* poprzedni kod
-    srand(time(0));
-
-    TPopulation pop(10);
-
-    cout << "Zaraz po utworzeniu obiektu klasy TPopulation";
-    pop.info();
-    cout << "\n\n";
-
-    cout << "Po wykonanych obliczeniach:";
-    pop.calculate();
-    pop.info();
-    cout << "\n\n";
-
-    cout << "Najlepszy osobnik: ";
-    pop.get_best_candidate().info();
-
-    */
- //   return 0;
-//}
-
+  return 0;
+}
