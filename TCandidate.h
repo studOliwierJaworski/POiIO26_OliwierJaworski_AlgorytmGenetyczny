@@ -18,8 +18,9 @@ class TCandidate {
 
 public:
     TCandidate();
+    TCandidate(const TCandidate &oryginal);
 
-    double get_mark() {return mark; }; // funkcja zwracająca ocenę
+    double get_mark() const {return mark; }; // funkcja zwracająca ocenę
     void rate();    // funkcja do wyliczania oceny
 
     void info();    // funkcja wyświetlająca informacje o osobniku

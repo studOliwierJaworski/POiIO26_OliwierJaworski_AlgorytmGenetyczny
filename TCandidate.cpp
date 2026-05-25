@@ -14,6 +14,17 @@ TCandidate::TCandidate() {  // konstruktor - nadajemy domyslne wartosci
     rand_gens_val();
 }
 
+TCandidate::TCandidate(const TCandidate &oryginal) {    // konstruktor kopiujący
+
+    mark = oryginal.get_mark();
+
+    for (int i = 0; i < GENS_COUNT; i++) {
+        double val = oryginal.genotype[i].get_val();
+        genotype[i].set_val(val);
+    }
+
+}
+
 void TCandidate::rate() {
 
     double x1 = genotype[0].get_val();

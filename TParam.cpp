@@ -9,34 +9,48 @@
 
 using namespace std;
 
-TParam::TParam(double x_start, double x_end, double dx) {
-
+TParam::TParam(double x_start, double x_end, double dx) : name{""}
+{
     set_range(x_start, x_end, dx);
-    name = "";
+    //name = "";
     set_rand_val();
 }
 
-TParam::TParam(double x_start, double x_end, double dx, double val) {
-
-    set_range(x_start, x_end, dx);
+TParam::TParam(double x_start, double x_end, double dx, double val) : TParam::TParam(x_start, x_end, dx)
+// uzywamy konstruktora delegujacego - czesc rzeczy jest juz uzupelniania z niego i tylko dodajemy nowe/kolejne zmienne
+{
+    //set_range(x_start, x_end, dx);
     set_val(val);
-    name = "";
+    //name = "";
 }
 
-TParam::TParam(std::string name, double x_start, double x_end, double dx) {
+TParam::TParam(std::string name_val, double x_start, double x_end, double dx) : name{name_val}
+{
 
-    set_name(name);
+    //set_name(name);
     set_range(x_start, x_end, dx);
     set_rand_val();
 }
 
-TParam::TParam(std::string name, double x_start, double x_end, double dx, double val) {
-
-    set_name(name);
-    set_range(x_start, x_end, dx);
+TParam::TParam(std::string name, double x_start, double x_end, double dx, double val) : TParam::TParam(name, x_start, x_end, dx)
+{
+    //set_name(name);
+    //set_range(x_start, x_end, dx);
     set_val(val);
 }
 
+TParam::TParam(const TParam &oryginal) : name{oryginal.get_name()} {
+
+    // Konstruktor kopiujący
+    double x_start = oryginal.get_x_start();
+    double x_end = oryginal.get_x_end();
+    double dx = oryginal.get_dx();
+    set_range(x_start, x_end, dx);
+
+    double val = oryginal.get_val();
+    set_val(val);
+
+}
 
 void TParam::set_range(double x_start, double x_end, double dx) {
 
