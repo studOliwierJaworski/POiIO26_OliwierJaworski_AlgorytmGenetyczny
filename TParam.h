@@ -34,10 +34,10 @@ public:
     // Bonusowa funkcja do wyświetlania stanu obiektu
     void info();
 
-private:
-    int get_val_id(double val);
     double get_x_start() const {return x_start; }
     double get_x_end() const { return x_end; }
     double get_dx() const {return dx; }
 
+private:
+    int get_val_id(double val);
 };

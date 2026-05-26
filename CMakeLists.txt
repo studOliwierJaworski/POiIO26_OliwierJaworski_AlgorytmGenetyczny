@@ -14,4 +14,6 @@ add_executable(AlgorytmGenetyczny main.cpp
         TKlasa.cpp
         dynamiczneTworzenieObiektow.cpp
         TAlgorithm.h
-        TAlgorithm.cpp)
+        TAlgorithm.cpp
+        TCandidate_Zad1.h
+        TCandidate_Zad2.h)

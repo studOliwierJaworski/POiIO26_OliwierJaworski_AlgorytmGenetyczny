@@ -3,11 +3,10 @@
 #include <time.h>
 #include <vector>
 
-#include "TParam.h"
 #include "TCandidate.h"
-#include "TPopulation.h"
-#include "TKlasa.h"
-#include "TAlgorithm.h"
+#include "TCandidate_Zad1.h"
+#include "TCandidate_Zad2.h"
+
 
 using namespace std;
 
@@ -15,31 +14,39 @@ int main() {
 
   srand(time(0));
 
-  TParam gen{ "gen1", 0, 10, 0.1};
-  gen.info();
+  int osobnik;
+  int ilosc_os;
 
-  TParam gen_copy(gen);
-  gen_copy.info();
+  cout << "Ktory osobnik [0-2]: ";
+  cin >> osobnik;
+  cout << "Ilu osobnikow utworzyc? ";
+  cin >> ilosc_os;
 
-  cout << "\n\n";
-// ###########################################################
-  TCandidate os1{};
-  os1.rate();
-  os1.info();
 
-  TCandidate os_copy{ os1 };
-  os_copy.info();
+  vector<TCandidate*> candidates;
 
-  cout << "\n\n";
-// ###########################################################
-  TPopulation pop1 {5};
-  pop1.calculate();
-  pop1.info();
+  for (int i = 0; i < ilosc_os; i++) {
+    if (osobnik == 0) {
+      candidates.push_back(new TCandidate{});
+    } else if (osobnik == 1) {
+      candidates.push_back(new TCandidate_Zad1{});
+    } else if (osobnik == 2) {
+      candidates.push_back(new TCandidate_Zad2{});
+    } else {
+      cout << "Bledny osobnik";
+    }
+  }
 
-  TPopulation pop_copy{ pop1 };
-  pop_copy.info();
+  for (int i = 0; i < candidates.size(); i++) {
 
-  cout << "\n\n";
+    candidates[i]->rate();
+    candidates[i]->info();
+  }
+
+  for (int i = 0; i < candidates.size(); i++) {
+
+    delete candidates[i];
+  }
 
   return 0;
 }

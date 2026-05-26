@@ -19,6 +19,12 @@ TCandidate::TCandidate(const TCandidate &oryginal) {    // konstruktor kopiując
     mark = oryginal.get_mark();
 
     for (int i = 0; i < GENS_COUNT; i++) {
+
+        double x_start = oryginal.genotype[i].get_x_start();
+        double x_end = oryginal.genotype[i].get_x_end();
+        double dx = oryginal.genotype[i].get_dx();
+        genotype[i].set_range(x_start, x_end, dx);
+
         double val = oryginal.genotype[i].get_val();
         genotype[i].set_val(val);
     }
