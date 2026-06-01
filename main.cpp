@@ -6,47 +6,53 @@
 #include "TCandidate.h"
 #include "TCandidate_Zad1.h"
 #include "TCandidate_Zad2.h"
-
+#include "TCandidate_Zad3.h"
+#include "TPopulation.h"
+#include "TAlgorithm.h"
 
 using namespace std;
+
 
 int main() {
 
   srand(time(0));
 
-  int osobnik;
-  int ilosc_os;
+  TCandidate* pattern;
+  int count = 0;
+  int _type = -1;
 
-  cout << "Ktory osobnik [0-2]: ";
-  cin >> osobnik;
+  cout << "Ktory osobnik [1-3]: ";
+  cin >> _type;
   cout << "Ilu osobnikow utworzyc? ";
-  cin >> ilosc_os;
+  cin >> count;
 
+  switch (_type) {
 
-  vector<TCandidate*> candidates;
-
-  for (int i = 0; i < ilosc_os; i++) {
-    if (osobnik == 0) {
-      candidates.push_back(new TCandidate{});
-    } else if (osobnik == 1) {
-      candidates.push_back(new TCandidate_Zad1{});
-    } else if (osobnik == 2) {
-      candidates.push_back(new TCandidate_Zad2{});
-    } else {
-      cout << "Bledny osobnik";
-    }
+    case 1:
+      pattern = new TCandidate_Zad1{};
+      break;
+    case 2:
+      pattern = new TCandidate_Zad2{};
+      break;
+    case 3:
+      pattern = new TCandidate_Zad3{};
+      break;
+    default:
+      pattern = new TCandidate_Zad1{};
   }
 
-  for (int i = 0; i < candidates.size(); i++) {
+  unsigned int candidates_count = 5;
+  unsigned int max_population_count = 20;
+  unsigned int min_improvement_proc = 2;
 
-    candidates[i]->rate();
-    candidates[i]->info();
-  }
+  TAlgorithm task{pattern,
+      candidates_count,
+      max_population_count,
+      min_improvement_proc
+  };
+  task.run();
 
-  for (int i = 0; i < candidates.size(); i++) {
-
-    delete candidates[i];
-  }
+   std:: cout << "\n\n";
 
   return 0;
 }

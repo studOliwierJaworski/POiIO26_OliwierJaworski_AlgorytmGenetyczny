@@ -5,18 +5,22 @@
 #include <algorithm> // uzywamy max
 
 #include "TPopulation.h"
+#include "TCandidate_Zad1.h"
 
 using namespace std;
 
 unsigned int TPopulation::_id = 0;
+unsigned int TPopulation::population_count = 0;
 
-TPopulation::TPopulation(unsigned int cands_count) {
+TPopulation::TPopulation(unsigned int cands_count, TCandidate* pattern) {
 
-    _id++;
+    _id = population_count;
+    population_count++;
+
     candidates_count = cands_count;
 
-    // utworzenie obiekyów klasy TCandidate, będących elementami wektora candidates
-    for (int i = 0; i < cands_count; i++) candidates.push_back(TCandidate{});
+    // utworzenie obiektów klasy TCandidate, będących elementami wektora candidates
+    for (int i = 0; i < cands_count; i++) candidates.push_back(pattern->create());
 }
 
 TPopulation::TPopulation(const TPopulation &oryginal) {
@@ -29,7 +33,7 @@ TPopulation::TPopulation(const TPopulation &oryginal) {
     for (int i = 0; i < candidates_count; i++) {
 
         const TCandidate* wsk_os_org = oryginal.get_candidate_wsk(i);
-        TCandidate copy{*wsk_os_org};
+        TCandidate* copy = wsk_os_org->create_copy();
         candidates.push_back(copy);
     }
 }
@@ -41,8 +45,8 @@ void TPopulation::calculate() {
 
     for (int i = 0; i < candidates_count; i++) {  // obliczanie po kolei wartości każdego osobnika oraz wyznaczenie najlepszej wartości
 
-        candidates[i].rate();
-        double val = candidates[i].get_mark();
+        candidates[i]->rate();
+        double val = candidates[i]->get_mark();
 
         if (i == 0) best_val = val;
         else best_val = max(best_val, val);
@@ -51,11 +55,11 @@ void TPopulation::calculate() {
     this->best_val = best_val;  // zapisanie najlepszego wyniku
 }
 
-TCandidate TPopulation::get_best_candidate() {
+TCandidate* TPopulation::get_best_candidate() {
 
     int i = 0;
 
-    while (candidates[i].get_mark() != best_val) i++;   // aż trafimy w najlepszego osobnika
+    while (candidates[i]->get_mark() != best_val) i++;   // aż trafimy w najlepszego osobnika
 
     return candidates[i];
 }
@@ -66,7 +70,7 @@ void TPopulation::info() {
     cout << "==== POPULATION #" << _id << " ====\n";
 
     for (int i = 0; i < candidates_count; i++) {
-        cout << "== candidate#" << i << ": " << candidates[i].get_mark() << "\n";
+        cout << "== candidate#" << i << ": " << candidates[i]->get_mark() << "\n";
     }
 
     cout << "=========================\n\n";
@@ -74,6 +78,6 @@ void TPopulation::info() {
 
 const TCandidate* TPopulation::get_candidate_wsk(int _id) const {
 
-    const TCandidate* wsk = &candidates[_id];
+    const TCandidate* wsk = candidates[_id];
     return wsk;
 }

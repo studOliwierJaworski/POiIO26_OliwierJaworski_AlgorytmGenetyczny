@@ -11,15 +11,15 @@ class TPopulation {
     static unsigned int population_count;
     static unsigned int _id;
     unsigned int candidates_count;  // liczba osobników w populacji
-    std::vector<TCandidate> candidates; // zbiornik na obiekty klasy TCandidate
+    std::vector<TCandidate*> candidates; // zbiornik na obiekty klasy TCandidate
     double best_val = 0;    // najlepszy obecny wynik
 
 public:
-    TPopulation(unsigned int cands_count = 10); // konstruktor z jednym parametrem - liczba osobników w populacji
+    TPopulation(unsigned int cands_count, TCandidate* pattern); // konstruktor z jednym parametrem - liczba osobników w populacji
     TPopulation(const TPopulation &oryginal);
 
     void calculate();
-    TCandidate get_best_candidate();
+    TCandidate* get_best_candidate();
 
     unsigned int get_id() {return _id;}
     unsigned int get_candidates_count() { return candidates_count; }

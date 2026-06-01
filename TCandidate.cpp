@@ -10,6 +10,9 @@ using namespace std;
 
 TCandidate::TCandidate() {  // konstruktor - nadajemy domyslne wartosci
 
+    //init_vector();
+    gens_count = genotype.size();
+
     mark = 0;
     rand_gens_val();
 }
@@ -18,7 +21,7 @@ TCandidate::TCandidate(const TCandidate &oryginal) {    // konstruktor kopiując
 
     mark = oryginal.get_mark();
 
-    for (int i = 0; i < GENS_COUNT; i++) {
+    for (int i = 0; i < gens_count; i++) {
 
         double x_start = oryginal.genotype[i].get_x_start();
         double x_end = oryginal.genotype[i].get_x_end();
@@ -30,7 +33,7 @@ TCandidate::TCandidate(const TCandidate &oryginal) {    // konstruktor kopiując
     }
 
 }
-
+/*
 void TCandidate::rate() {
 
     double x1 = genotype[0].get_val();
@@ -39,9 +42,17 @@ void TCandidate::rate() {
     mark = pow(x1, 2) + x2; // definicja postaci f. oceny
 }
 
+void TCandidate::init_vector() {
+
+    genotype.push_back({ "x1", 0, 100, 1});
+    genotype.push_back({ "x2", 0, 100, 1});
+
+}
+*/
+
 void TCandidate::rand_gens_val() {
 
-    for (int i = 0; i < GENS_COUNT; i++) {  // losowa wartość dla każdego genu osobnika
+    for (int i = 0; i < gens_count; i++) {  // losowa wartość dla każdego genu osobnika
         genotype[i].set_rand_val();
     }
 }
@@ -51,9 +62,9 @@ void TCandidate::info() {
     cout << "\n\n";
     cout << "====================\n";
     cout << "==\n";
-    cout << "== gens count: " << GENS_COUNT << "\n";
+    cout << "== gens count: " << gens_count << "\n";
 
-    for (int i = 0; i < GENS_COUNT; i++) {
+    for (int i = 0; i < gens_count; i++) {
         cout << "== \"" << genotype[i].get_name()
             << "\" value: " << genotype[i].get_val()
             << "\n";

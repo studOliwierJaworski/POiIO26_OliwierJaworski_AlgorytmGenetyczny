@@ -16,4 +16,5 @@ add_executable(AlgorytmGenetyczny main.cpp
         TAlgorithm.h
         TAlgorithm.cpp
         TCandidate_Zad1.h
-        TCandidate_Zad2.h)
+        TCandidate_Zad2.h
+        TCandidate_Zad3.h)
