@@ -18,14 +18,20 @@ public:
     TPopulation(unsigned int cands_count, TCandidate* pattern); // konstruktor z jednym parametrem - liczba osobników w populacji
     TPopulation(const TPopulation &oryginal);
 
+    // zadanie ruletka
+    TCandidate* promote_candidate();
+
     void calculate();
     TCandidate* get_best_candidate();
+
+    int get_candidate_index(TCandidate* candidate);
 
     unsigned int get_id() {return _id;}
     unsigned int get_candidates_count() { return candidates_count; }
     double get_best_val() {return best_val; }
 
     void info();    // f. do wyswietlania informacji na ekranie
+    void info_short();
 
 private:
     const TCandidate* get_candidate_wsk(int _id) const;

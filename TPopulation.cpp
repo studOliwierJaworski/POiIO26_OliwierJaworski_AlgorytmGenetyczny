@@ -38,6 +38,31 @@ TPopulation::TPopulation(const TPopulation &oryginal) {
     }
 }
 
+TCandidate* TPopulation::promote_candidate() {      // zadanie ruletka
+
+    int total_sum = 0;
+    int current_sum = 0;
+
+    for (int i = 0; i < candidates_count; i++) {
+
+        // rzutujemy na int
+        total_sum = (int)(total_sum + candidates[i]->get_mark());  // calkowity przedzial do losowania
+    }
+
+    int los = rand() % total_sum + 1;   // losowanie z ruletki
+
+    for (int j = 0; j < candidates_count; j++) {
+
+        current_sum = (int)(current_sum + candidates[j]->get_mark()); // przedziały do sprawdzania który osobnik
+
+        if (los <= current_sum) {
+            return candidates[j];
+        }
+    }
+    cout << "Los jest bledny";
+    // zwrócenie ostatniego osobnika przy blednym losie
+    return candidates[candidates_count-1];
+}
 
 void TPopulation::calculate() {
 
@@ -64,6 +89,17 @@ TCandidate* TPopulation::get_best_candidate() {
     return candidates[i];
 }
 
+int TPopulation::get_candidate_index(TCandidate* candidate) {
+
+    for (int i = 0; i < candidates_count; i++) {
+        // Porównujemy wskaźniki
+        if (candidates[i] == candidate) {
+            return i; // Zwracamy indeks osobnika
+        }
+    }
+    return -1;
+}
+
 void TPopulation::info() {
 
     cout << "\n\n";
@@ -74,6 +110,12 @@ void TPopulation::info() {
     }
 
     cout << "=========================\n\n";
+}
+
+void TPopulation::info_short() {    // do ruletki
+    for (int i = 0; i < candidates_count; i++) {
+        cout << "Candidate#" << i << ": " << candidates[i]->get_mark() << "\n";
+    }
 }
 
 const TCandidate* TPopulation::get_candidate_wsk(int _id) const {

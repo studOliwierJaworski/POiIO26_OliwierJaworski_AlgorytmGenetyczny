@@ -17,42 +17,23 @@ int main() {
 
   srand(time(0));
 
-  TCandidate* pattern;
-  int count = 0;
-  int _type = -1;
+    TCandidate_Zad1 wzorzec;
 
-  cout << "Ktory osobnik [1-3]: ";
-  cin >> _type;
-  cout << "Ilu osobnikow utworzyc? ";
-  cin >> count;
+    TPopulation pop{ 10 , &wzorzec};
+    pop.calculate();
+    pop.info_short();
+    cout << endl;
 
-  switch (_type) {
+    cout << "Wylosowani osobnicy: \n";
 
-    case 1:
-      pattern = new TCandidate_Zad1{};
-      break;
-    case 2:
-      pattern = new TCandidate_Zad2{};
-      break;
-    case 3:
-      pattern = new TCandidate_Zad3{};
-      break;
-    default:
-      pattern = new TCandidate_Zad1{};
-  }
+    for (int i = 0; i < 10; i++) {
 
-  unsigned int candidates_count = 5;
-  unsigned int max_population_count = 20;
-  unsigned int min_improvement_proc = 2;
+        TCandidate* can = pop.promote_candidate();
+        int id = pop.get_candidate_index(can);
+        cout << "#" << id << ", ";
+    }
 
-  TAlgorithm task{pattern,
-      candidates_count,
-      max_population_count,
-      min_improvement_proc
-  };
-  task.run();
-
-   std:: cout << "\n\n";
+   cout << endl;
 
   return 0;
 }
