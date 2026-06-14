@@ -39,7 +39,7 @@ int main() {
    cout << endl;
 */
 
-    // Na potrzeby testów tak mało, żeby dobrze widzieć działanie krzyżowania
+    // Na potrzeby testów tak mało, żeby dobrze widzieć działanie krzyżowania i mutacji
     TAlgorithm algorytm(&wzorzec, 4, 3, 0);
 
     algorytm.run();

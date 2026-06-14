@@ -74,7 +74,8 @@ void TAlgorithm::run() {
                 krzyzowanie(rodzic1, rodzic2, potomek1, potomek2);
 
                 // 4. Mutacja potem
-
+                mutacja(potomek1);
+                mutacja(potomek2);
 
                 // 5. Dodanie do nowej populacji
                 wsk_population_pres->replace_candidate(i, potomek1);
@@ -118,7 +119,7 @@ void TAlgorithm::krzyzowanie(TCandidate* rodzic1, TCandidate* rodzic2, TCandidat
 
 
         // wypisanie do przetestowania działania
-        cout << "\nzaszło krzyżowanie" << endl;
+        cout << "\nZaszło krzyżowanie" << endl;
         cout << "Punkt ciecia: " << ciecie << endl;
         cout << "Rodzic 1: " << bity_rodzic1.substr(0, ciecie) << "|" << bity_rodzic1.substr(ciecie) << endl;
         cout << "Rodzic 2: " << bity_rodzic2.substr(0, ciecie) << "|" << bity_rodzic2.substr(ciecie) << endl;
@@ -158,7 +159,40 @@ void TAlgorithm::krzyzowanie(TCandidate* rodzic1, TCandidate* rodzic2, TCandidat
     }
 }
 
+void TAlgorithm::mutacja(TCandidate* potomek) {
 
+    for (int i = 0; i < 3; i++) {
+
+        int szansa = rand() % 100 + 1;
+
+
+        // 5% szansy na mutację
+        if (szansa <= 5) {
+
+            int id = potomek->get_gen_raw_id(i);
+            int stare_id = id; // do wypisania w konsoli
+
+            // losujemy 0 lub 1, aby mieć kierunek mutacji
+            int kierunek = rand() % 2;
+
+            if (kierunek == 0) {
+
+                id--;
+                if (id < 0) id = 0; // zabezpieczenie
+            } else {
+                id++;
+            }
+
+            // zapisanie zmutowanego genu z powrotem do osobnika
+            potomek->set_gen_raw_id(i, id);
+
+            // podgląd mutacji w konsoli
+            cout << "\nZaszla mutacja (Gen #" << i << ") ";
+            cout << "Zmiana kroku z " << stare_id << " na " << id << endl;
+
+        }
+    }
+}
 
 bool TAlgorithm::is_max_population() {
 

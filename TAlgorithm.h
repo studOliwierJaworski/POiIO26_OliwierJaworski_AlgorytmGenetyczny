@@ -29,4 +29,5 @@ private:
     bool is_max_population();
     bool is_min_improvement();
     void krzyzowanie(TCandidate* r1, TCandidate* r2, TCandidate* p1, TCandidate* p2);
+    void mutacja(TCandidate* potomek);
 };
