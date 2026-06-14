@@ -64,6 +64,16 @@ TCandidate* TPopulation::promote_candidate() {      // zadanie ruletka
     return candidates[candidates_count-1];
 }
 
+void TPopulation::replace_candidate(int index, TCandidate* new_candidate) {
+
+    // usuwamy z pamięci domyślnie wygenerowanego kandydata w tym miejscu
+    delete candidates[index];
+
+    // nowy potomek w to miejsce
+    candidates[index] = new_candidate;
+}
+
+
 void TPopulation::calculate() {
 
     double best_val = 0.0;  // lokalna (chwilowa) najlepsza wartość

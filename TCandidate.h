@@ -27,14 +27,20 @@ public:
 
     virtual TCandidate* create() = 0;
     virtual TCandidate* create_copy() const = 0;
+    virtual ~TCandidate() {}
 
     double get_mark() const {return mark; }; // funkcja zwracająca ocenę
     virtual void rate() = 0;    // funkcja abstrakcyjna -> cala klasa abstrakcyjna
 
     void info();    // funkcja wyświetlająca informacje o osobniku
 
+    int get_gen_raw_id(int gen_id) {return genotype[gen_id].get_raw_val_id(); }
+    void set_gen_raw_id(int gen_id, int new_id) { genotype[gen_id].set_raw_val_id(new_id); }
+
+
 protected:
     virtual void init_vector() = 0;
+
     void rand_gens_val();   // funkcja do losowania wartości początkowej genów/parametrów osobnika
     double get_gen_val(int gen_id) const {return genotype[gen_id].get_val();}
 };

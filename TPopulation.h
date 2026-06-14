@@ -21,6 +21,8 @@ public:
     // zadanie ruletka
     TCandidate* promote_candidate();
 
+    void replace_candidate(int index, TCandidate* new_candidate);
+
     void calculate();
     TCandidate* get_best_candidate();
 

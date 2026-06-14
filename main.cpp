@@ -17,8 +17,9 @@ int main() {
 
   srand(time(0));
 
-    TCandidate_Zad1 wzorzec;
+    TCandidate_Zad3 wzorzec;
 
+    /*
     TPopulation pop{ 10 , &wzorzec};
     pop.calculate();
     pop.info_short();
@@ -29,11 +30,19 @@ int main() {
     for (int i = 0; i < 10; i++) {
 
         TCandidate* can = pop.promote_candidate();
-        int id = pop.get_candidate_index(can);
+        int id = pop.get_candidate_index(can); // żeby wyświetlić indeks osobnika, a nie jego ocenę
         cout << "#" << id << ", ";
+        // mozna by histogram zrobić, żeby sprawdzić faktycznie jak często co się losuje
+
     }
 
    cout << endl;
+*/
+
+    // Na potrzeby testów tak mało, żeby dobrze widzieć działanie krzyżowania
+    TAlgorithm algorytm(&wzorzec, 4, 3, 0);
+
+    algorytm.run();
 
   return 0;
 }

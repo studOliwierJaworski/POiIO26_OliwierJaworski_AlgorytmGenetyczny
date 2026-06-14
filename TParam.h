@@ -31,6 +31,10 @@ public:
     void set_val(double val) {val_id = get_val_id(val); }
     double get_val() const {return x_start + val_id * dx; }
 
+    int get_raw_val_id() const { return val_id; }
+    void set_raw_val_id(int new_id) { val_id = new_id;}
+
+
     // Bonusowa funkcja do wyświetlania stanu obiektu
     void info();
 
